@@ -1,0 +1,282 @@
+/* Updated: 2025-10-28T04:48:30.285Z */
+/* Updated: 2025-10-28T03:43:42.402Z */
+/* Updated: 2025-10-27T16:20:58.635Z */
+/* Updated: 2025-10-27T15:41:58.074Z */
+/* Updated: 2025-10-27T13:08:49.107Z */
+/* Updated: 2025-10-27T13:08:28.431Z */
+/* Updated: 2025-10-27T12:52:38.345Z */
+/* Updated: 2025-10-27T11:00:43.992Z */
+/* Updated: 2025-10-27T05:01:48.483Z */
+/* Updated: 2025-10-26T04:05:19.352Z */
+/* Updated: 2025-10-25T14:51:44.856Z */
+/* Updated: 2025-10-25T14:50:42.181Z */
+/* Updated: 2025-10-25T14:39:11.743Z */
+/* Updated: 2025-10-25T14:24:43.920Z */
+/* Updated: 2025-10-25T11:43:23.493Z */
+/* Updated: 2025-10-25T10:59:36.711Z */
+/* Updated: 2025-10-25T09:14:27.887Z */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* Shadcn/UI colors - Light theme only */
+  --color-background: #ffffff;
+  --color-foreground: #000000; /* Adjusted to pure black */
+
+  --color-card: #ffffff;
+  --color-card-foreground: #000000;
+
+  --color-popover: #ffffff;
+  --color-popover-foreground: #000000;
+
+  --color-primary: #ffc107; /* Brand Yellow */
+  --color-primary-foreground: #000000; /* Pure Black for contrast */
+
+  --color-secondary: #f5f5f5; /* Light Gray */
+  --color-secondary-foreground: #1a1a1a; /* Dark Gray */
+
+  --color-muted: #666666; /* Medium Gray */
+  --color-muted-foreground: #9ca3af; /* Muted Gray */
+
+  --color-accent: #f5f5f5; /* Light Gray */
+  --color-accent-foreground: #1a1a1a; /* Dark Gray */
+
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #fafafa;
+
+  --color-border: #e5e5e5;
+  --color-input: #e5e5e5;
+  --color-ring: #ffc107; /* Brand Yellow for focus ring */
+
+  --color-chart-1: #e67e22;
+  --color-chart-2: #2d8659;
+  --color-chart-3: #1e3a5f;
+  --color-chart-4: #f1c40f;
+  --color-chart-5: #e74c3c;
+
+  --color-sidebar: #f7f7f7;
+  --color-sidebar-foreground: #404040;
+  --color-sidebar-primary: #1a1a1a;
+  --color-sidebar-primary-foreground: #fafafa;
+  --color-sidebar-accent: #f0f0f0;
+  --color-sidebar-accent-foreground: #1a1a1a;
+  --color-sidebar-border: #d4d4d8;
+  --color-sidebar-ring: #3b82f6;
+
+  /* E-MAX Education specific colors */
+  --color-brand-yellow: #ffc107;
+  --color-pure-black: #000000;
+  --color-pure-white: #ffffff;
+  --color-dark-gray: #1a1a1a;
+  --color-medium-gray: #666666;
+  --color-light-gray: #f5f5f5;
+  --color-icon-gold: #fdb913;
+  --color-star-rating: #fdb913;
+  --color-heading-black: #000000;
+  --color-body-gray: #666666; /* Adjusted from #4B5563 to match HLD */
+  --color-muted-gray: #9ca3af;
+  --color-footer-background: #000000;
+  --color-footer-text: #ffffff;
+  --color-footer-link: rgba(255, 255, 255, 0.8);
+  --color-footer-copyright: rgba(255, 255, 255, 0.5);
+  --color-hero-text: #ffffff;
+  --color-hero-subtext: rgba(255, 255, 255, 0.9);
+  --color-about-background: #000000; /* Adjusted from #0D1B2A to match HLD */
+  --color-about-stat-background: #0d1b2a; /* Specific for stat cards */
+  --color-about-stat-text: #ffffff;
+  --color-course-card-border: #f0f0f0;
+  --color-course-meta: #666666;
+  --color-search-placeholder: #9ca3af;
+  --color-search-icon: #666666;
+  --color-nav-link: #000000;
+  --color-testimonial-role: #666666;
+  --color-testimonial-border: #f0f0f0;
+  --color-category-card-border: #f0f0f0;
+  --color-category-description: #666666;
+  --color-category-list-background: #fafafa;
+  --color-category-list-border: #e5e7eb;
+
+  /* Typography */
+  --font-inter: "Inter", -apple-system, system-ui, sans-serif;
+
+  /* Shadcn/UI radii */
+  --radius-lg: 0.75rem; /* Adjusted to 12px */
+  --radius-md: calc(0.75rem - 2px);
+  --radius-sm: calc(0.75rem - 4px);
+
+  /* Shadcn/UI animations */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+/*
+  The default border color has changed to currentColor in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-border);
+  }
+}
+
+@layer base {
+  :root {
+    /* Shadcn/UI variables - Light theme only */
+    --background: var(--color-background);
+    --foreground: var(--color-foreground);
+    --card: var(--color-card);
+    --card-foreground: var(--color-card-foreground);
+    --popover: var(--color-popover);
+    --popover-foreground: var(--color-popover-foreground);
+    --primary: var(--color-primary);
+    --primary-foreground: var(--color-primary-foreground);
+    --secondary: var(--color-secondary);
+    --secondary-foreground: var(--color-secondary-foreground);
+    --muted: var(--color-muted);
+    --muted-foreground: var(--color-muted-foreground);
+    --accent: var(--color-accent);
+    --accent-foreground: var(--color-accent-foreground);
+    --destructive: var(--color-destructive);
+    --destructive-foreground: var(--color-destructive-foreground);
+    --border: var(--color-border);
+    --input: var(--color-input);
+    --ring: var(--color-ring);
+    --chart-1: var(--color-chart-1);
+    --chart-2: var(--color-chart-2);
+    --chart-3: var(--color-chart-3);
+    --chart-4: var(--color-chart-4);
+    --chart-5: var(--color-chart-5);
+    --radius: var(--radius-lg);
+    --sidebar-background: var(--color-sidebar);
+    --sidebar-foreground: var(--color-sidebar-foreground);
+    --sidebar-primary: var(--color-sidebar-primary);
+    --sidebar-primary-foreground: var(--color-sidebar-primary-foreground);
+    --sidebar-accent: var(--color-sidebar-accent);
+    --sidebar-accent-foreground: var(--color-sidebar-accent-foreground);
+    --sidebar-border: var(--color-sidebar-border);
+    --sidebar-ring: var(--color-sidebar-ring);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-inter);
+    @apply bg-background text-foreground;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-inter);
+    color: var(--color-heading-black);
+  }
+
+  h1 {
+    font-size: 3.5rem; /* 56px */
+    font-weight: 700;
+    line-height: 1.1; /* 64px */
+    letter-spacing: -0.02em;
+  }
+
+  h2 {
+    font-size: 2.5rem; /* 40px */
+    font-weight: 700;
+    line-height: 1.2; /* 48px */
+    letter-spacing: -0.01em;
+  }
+
+  h3 {
+    font-size: 1.5rem; /* 24px */
+    font-weight: 600;
+    line-height: 1.3; /* 32px */
+    letter-spacing: -0.01em;
+  }
+
+  h4 {
+    font-size: 1.125rem; /* 18px */
+    font-weight: 600;
+    line-height: 1.4; /* 26px */
+    letter-spacing: 0;
+  }
+
+  h5 {
+    font-size: 0.875rem; /* 14px */
+    font-weight: 700;
+    line-height: 1.4; /* 20px */
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  p {
+    font-size: 1rem; /* 16px */
+    font-weight: 400;
+    line-height: 1.6; /* 26px */
+    color: var(--color-body-gray);
+  }
+
+  .text-body-lg {
+    font-size: 1.125rem; /* 18px */
+    font-weight: 400;
+    line-height: 1.6; /* 28px */
+  }
+
+  .text-body-sm {
+    font-size: 0.875rem; /* 14px */
+    font-weight: 400;
+    line-height: 1.5; /* 21px */
+  }
+
+  .text-caption {
+    font-size: 0.75rem; /* 12px */
+    font-weight: 400;
+    line-height: 1.4; /* 17px */
+  }
+
+  .container {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+  }
+}
+
+/* Hide Next.js error overlay portal */
+nextjs-portal {
+  display: none !important;
+}

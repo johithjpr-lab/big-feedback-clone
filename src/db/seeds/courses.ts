@@ -1,0 +1,111 @@
+import { db } from '@/db';
+import { courses } from '@/db/schema';
+
+async function main() {
+    const sampleCourses = [
+        {
+            title: 'Complete Java Programming Masterclass',
+            slug: 'complete-java-programming-masterclass',
+            category: 'Software Development',
+            description: 'Master Java programming from basics to advanced concepts. Learn OOP, data structures, algorithms, and popular frameworks like Spring and Hibernate. Perfect for beginners and intermediate learners.',
+            thumbnail: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/da7d34c1-29ab-49cf-9cb9-e9dfeb9eaad9-big-feedback-193790-framer-app/assets/images/sddefault-3.webp',
+            videoUrl: 'https://www.youtube.com/embed/7dSJubxFWv0?si=VbQRkU8ritye5HX_&iv_load_policy=3&rel=0&modestbranding=1&playsinline=1&autoplay=0',
+            rating: 4.8,
+            students: 15420,
+            duration: 48,
+            price: 12999,
+            instructor: 'Dr. Ramesh Kumar',
+            level: 'Beginner',
+            topics: ['Java Basics', 'OOP Concepts', 'Data Structures', 'Algorithms', 'Spring Framework', 'Hibernate'],
+            createdAt: '2024-11-15T10:00:00.000Z',
+        },
+        {
+            title: 'Advanced Tally ERP 9 with GST Implementation',
+            slug: 'advanced-tally-erp-9-gst',
+            category: 'Accounting',
+            description: 'Comprehensive Tally ERP 9 training covering GST configuration, invoicing, inventory management, and financial reporting. Ideal for accountants and finance professionals.',
+            thumbnail: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/da7d34c1-29ab-49cf-9cb9-e9dfeb9eaad9-big-feedback-193790-framer-app/assets/images/sddefault-5.webp',
+            videoUrl: 'https://www.youtube.com/embed/rG_eHA3vN1I?si=N9Yagt-SgL6whF7B&iv_load_policy=3&rel=0&modestbranding=1&playsinline=1&autoplay=0',
+            rating: 4.7,
+            students: 8750,
+            duration: 36,
+            price: 8999,
+            instructor: 'Arun Krishnan',
+            level: 'Intermediate',
+            topics: ['Tally Basics', 'GST Configuration', 'Invoicing', 'Inventory Management', 'Financial Reports', 'TDS & TCS'],
+            createdAt: '2024-11-20T11:30:00.000Z',
+        },
+        {
+            title: 'MERN Stack Development: Complete Guide',
+            slug: 'mern-stack-development-guide',
+            category: 'Software Development',
+            description: 'Build full-stack web applications using MongoDB, Express.js, React, and Node.js. Learn REST APIs, authentication, state management, and deployment strategies.',
+            thumbnail: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/da7d34c1-29ab-49cf-9cb9-e9dfeb9eaad9-big-feedback-193790-framer-app/assets/images/sddefault-7.webp',
+            videoUrl: 'https://www.youtube.com/embed/tTCam8KGVRE?si=HUn6tfw3ycaPFNOj&iv_load_policy=3&rel=0&modestbranding=1&playsinline=1&autoplay=0',
+            rating: 4.9,
+            students: 12380,
+            duration: 52,
+            price: 14999,
+            instructor: 'Priya Menon',
+            level: 'Intermediate',
+            topics: ['MongoDB', 'Express.js', 'React', 'Node.js', 'REST APIs', 'Authentication', 'Deployment'],
+            createdAt: '2024-11-25T09:15:00.000Z',
+        },
+        {
+            title: 'SAP FICO Certification Training',
+            slug: 'sap-fico-certification-training',
+            category: 'SAP',
+            description: 'Professional SAP FICO certification training covering Financial Accounting, Controlling, Asset Accounting, Cost Center, Profit Center, and Internal Orders. Industry-ready curriculum.',
+            thumbnail: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/da7d34c1-29ab-49cf-9cb9-e9dfeb9eaad9-big-feedback-193790-framer-app/assets/images/sddefault-9.webp',
+            videoUrl: 'https://www.youtube.com/embed/ER4xnUGztaE?si=kVUdISszT48ROO1z&iv_load_policy=3&rel=0&modestbranding=1&playsinline=1&autoplay=0',
+            rating: 4.8,
+            students: 8650,
+            duration: 60,
+            price: 18999,
+            instructor: 'Dr. Ramesh Kumar',
+            level: 'Advanced',
+            topics: ['Financial Accounting', 'Controlling', 'Asset Accounting', 'Cost Center', 'Profit Center', 'Internal Orders'],
+            createdAt: '2024-12-01T14:00:00.000Z',
+        },
+        {
+            title: 'Adobe Creative Suite Masterclass',
+            slug: 'adobe-creative-suite-masterclass',
+            category: 'Design',
+            description: 'Master Adobe Creative Suite including Photoshop, Illustrator, InDesign, Premiere Pro, After Effects, and XD. Perfect for aspiring graphic designers and content creators.',
+            thumbnail: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/da7d34c1-29ab-49cf-9cb9-e9dfeb9eaad9-big-feedback-193790-framer-app/assets/images/sddefault-11.webp',
+            videoUrl: 'https://www.youtube.com/embed/vvNoZxoMuGI?si=-nXsvV3QyrWZ4S07&iv_load_policy=3&rel=0&modestbranding=1&playsinline=1&autoplay=0',
+            rating: 4.7,
+            students: 7890,
+            duration: 45,
+            price: 11999,
+            instructor: 'Sneha Reddy',
+            level: 'Beginner',
+            topics: ['Photoshop', 'Illustrator', 'InDesign', 'Premiere Pro', 'After Effects', 'XD'],
+            createdAt: '2024-12-05T10:30:00.000Z',
+        },
+        {
+            title: 'Python for Data Science and Machine Learning',
+            slug: 'python-data-science-machine-learning',
+            category: 'Software Development',
+            description: 'Comprehensive Python course covering data science fundamentals, machine learning algorithms, deep learning with TensorFlow, and hands-on projects with real datasets.',
+            thumbnail: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/da7d34c1-29ab-49cf-9cb9-e9dfeb9eaad9-big-feedback-193790-framer-app/assets/images/sddefault-13.webp',
+            videoUrl: 'https://www.youtube.com/embed/m67-bOpOoPU?si=LF_kZBycKa43M92H&iv_load_policy=3&rel=0&modestbranding=1&playsinline=1&autoplay=0',
+            rating: 4.9,
+            students: 18720,
+            duration: 56,
+            price: 15999,
+            instructor: 'Priya Menon',
+            level: 'Intermediate',
+            topics: ['Python Basics', 'NumPy', 'Pandas', 'Matplotlib', 'Scikit-learn', 'TensorFlow', 'Deep Learning'],
+            createdAt: '2024-12-10T16:45:00.000Z',
+        },
+    ];
+
+    await db.insert(courses).values(sampleCourses);
+
+    console.log('✅ Courses seeder completed successfully');
+}
+
+main().catch((error) => {
+    console.error('❌ Seeder failed:', error);
+});
