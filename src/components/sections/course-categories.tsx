@@ -138,7 +138,7 @@ const CourseCategories = () => {
   const isTitleInView = useInView(titleRef, { once: true });
 
   return (
-    <section className="bg-background py-20 lg:py-24">
+    <section className="bg-white py-20 lg:py-24">
       <div className="max-w-7xl mx-auto px-10 md:px-20">
         <motion.div 
           ref={titleRef}

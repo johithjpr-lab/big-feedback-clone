@@ -1,3 +1,6 @@
+/* Updated: 2025-10-28T10:16:37.648Z */
+/* Updated: 2025-10-28T09:00:39.555Z */
+/* Updated: 2025-10-28T07:22:55.690Z */
 /* Updated: 2025-10-28T04:48:30.285Z */
 /* Updated: 2025-10-28T03:43:42.402Z */
 /* Updated: 2025-10-27T16:20:58.635Z */
@@ -191,7 +194,8 @@
 
   body {
     font-family: var(--font-inter);
-    @apply bg-background text-foreground;
+    background-color: #ffffff;
+    color: var(--color-foreground);
   }
 
   h1, h2, h3, h4, h5, h6 {

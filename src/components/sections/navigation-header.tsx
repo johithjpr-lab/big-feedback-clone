@@ -68,7 +68,7 @@ export default function NavigationHeader() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, type: "spring" }}
-      className="sticky top-0 z-50 w-full bg-background shadow-sm"
+      className="sticky top-0 z-50 w-full bg-white shadow-sm"
       style={{ 
         transformStyle: "preserve-3d",
         perspective: "1000px"
@@ -135,7 +135,7 @@ export default function NavigationHeader() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onFocus={() => searchQuery.trim() && setShowResults(true)}
-              className="h-12 w-[231px] rounded-lg border border-input bg-background pl-12 pr-4 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="h-12 w-[231px] rounded-lg border border-input bg-white pl-12 pr-4 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             />
             
             {/* Search Results Dropdown */}
