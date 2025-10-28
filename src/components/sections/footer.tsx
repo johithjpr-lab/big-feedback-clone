@@ -64,21 +64,24 @@ const Footer = () => {
                             Empowering careers through quality education since 2008.
                         </p>
                         <div className="flex space-x-4 mt-6">
-                            {socialLinks.map((social, index) => (
-                                <motion.a 
-                                    key={social.name} 
-                                    href={social.href} 
-                                    aria-label={social.name} 
-                                    className="hover:text-brand-yellow transition-colors" 
-                                    style={{ color: 'var(--color-footer-link)' }}
-                                    initial={{ opacity: 0, scale: 0 }}
-                                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                                    transition={{ delay: index * 0.1 + 0.3 }}
-                                    whileHover={{ scale: 1.3, rotateZ: 360 }}
-                                >
-                                    <social.icon size={20} />
-                                </motion.a>
-                            ))}
+                            {socialLinks.map((social, index) => {
+                                const IconComponent = social.icon;
+                                return (
+                                    <motion.a 
+                                        key={social.name} 
+                                        href={social.href} 
+                                        aria-label={social.name} 
+                                        className="hover:text-brand-yellow transition-colors" 
+                                        style={{ color: 'rgba(255, 255, 255, 0.8)' }}
+                                        initial={{ opacity: 0, scale: 0 }}
+                                        animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                                        transition={{ delay: index * 0.1 + 0.3 }}
+                                        whileHover={{ scale: 1.3, rotateZ: 360 }}
+                                    >
+                                        <IconComponent size={20} strokeWidth={2} />
+                                    </motion.a>
+                                );
+                            })}
                         </div>
                     </motion.div>
 
@@ -145,21 +148,21 @@ const Footer = () => {
                                 className="flex items-start gap-3"
                                 whileHover={{ x: 5, scale: 1.02 }}
                             >
-                                <MapPin size={24} className="text-brand-yellow flex-shrink-0 mt-0.5" />
+                                <MapPin size={24} className="text-[#FFC107] flex-shrink-0 mt-0.5" strokeWidth={2} />
                                 <span>3rd Floor, Sivaraj Building, Tower Jct, Near Veppamoodu, Nagercoil, Tamil Nadu 629001</span>
                             </motion.li>
                             <motion.li 
                                 className="flex items-center gap-3"
                                 whileHover={{ x: 5, scale: 1.05 }}
                             >
-                                <Phone size={18} className="flex-shrink-0" />
+                                <Phone size={18} className="flex-shrink-0 text-white" strokeWidth={2} />
                                 <a href="tel:+919876543210" className="hover:text-brand-yellow transition-colors">+91 98765 43210</a>
                             </motion.li>
                             <motion.li 
                                 className="flex items-center gap-3"
                                 whileHover={{ x: 5, scale: 1.05 }}
                             >
-                                <Mail size={18} className="flex-shrink-0" />
+                                <Mail size={18} className="flex-shrink-0 text-white" strokeWidth={2} />
                                 <a href="mailto:info@emaxeducation.com" className="hover:text-brand-yellow transition-colors">info@emaxeducation.com</a>
                             </motion.li>
                         </ul>

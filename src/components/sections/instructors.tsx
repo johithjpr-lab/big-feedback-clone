@@ -127,7 +127,7 @@ export default function Instructors() {
                     animate={isInView ? { scale: 1, rotate: 0 } : {}}
                     transition={{ delay: index * 0.1 + 0.3, type: "spring" }}
                   >
-                    <Award className="w-5 h-5 text-black" />
+                    <Award className="w-5 h-5 text-black" strokeWidth={2} />
                   </motion.div>
                 </motion.div>
 
@@ -143,7 +143,7 @@ export default function Instructors() {
                     {instructor.specialization}
                   </p>
                   <p className="text-xs text-[var(--color-muted-gray)] flex items-center justify-center gap-1">
-                    <Award className="w-3 h-3" />
+                    <Award className="w-3 h-3" strokeWidth={2} />
                     {instructor.experience} Experience
                   </p>
                 </div>
@@ -160,7 +160,7 @@ export default function Instructors() {
                     whileHover={{ scale: 1.1, rotateY: 10 }}
                   >
                     <div className="flex items-center justify-center gap-1 mb-1">
-                      <BookOpen className="w-4 h-4 text-[var(--color-brand-yellow)]" />
+                      <BookOpen className="w-4 h-4 text-[var(--color-brand-yellow)]" strokeWidth={2} />
                       <span className="text-sm font-semibold text-[var(--color-heading-black)]">
                         {instructor.courses}
                       </span>
@@ -172,7 +172,7 @@ export default function Instructors() {
                     whileHover={{ scale: 1.1, rotateY: 10 }}
                   >
                     <div className="flex items-center justify-center gap-1 mb-1">
-                      <Users className="w-4 h-4 text-[var(--color-brand-yellow)]" />
+                      <Users className="w-4 h-4 text-[var(--color-brand-yellow)]" strokeWidth={2} />
                       <span className="text-sm font-semibold text-[var(--color-heading-black)]">
                         {(instructor.students / 1000).toFixed(1)}k
                       </span>
@@ -184,7 +184,7 @@ export default function Instructors() {
                     whileHover={{ scale: 1.1, rotateY: 10 }}
                   >
                     <div className="flex items-center justify-center gap-1 mb-1">
-                      <Star className="w-4 h-4 text-[var(--color-star-rating)] fill-current" />
+                      <Star className="w-4 h-4 text-[var(--color-star-rating)] fill-current" strokeWidth={2} />
                       <span className="text-sm font-semibold text-[var(--color-heading-black)]">
                         {instructor.rating}
                       </span>

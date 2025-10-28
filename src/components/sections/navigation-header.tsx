@@ -108,7 +108,7 @@ export default function NavigationHeader() {
             whileHover={{ scale: 1.02, rotateY: 5 }}
             style={{ transformStyle: "preserve-3d" }}
           >
-            <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted" />
+            <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-600" style={{ strokeWidth: 2 }} />
             <input
               type="search"
               placeholder="Search courses"
@@ -202,7 +202,7 @@ export default function NavigationHeader() {
             className="inline-flex items-center justify-center rounded-md p-2 text-foreground"
             aria-label="Open menu"
           >
-            <Menu className="h-6 w-6" />
+            <Menu className="h-6 w-6 text-gray-800" style={{ strokeWidth: 2 }} />
           </button>
         </div>
       </div>
@@ -242,7 +242,7 @@ export default function NavigationHeader() {
                 className="-mr-2 rounded-md p-2"
                 aria-label="Close menu"
               >
-                <X className="h-6 w-6" />
+                <X className="h-6 w-6 text-gray-800" style={{ strokeWidth: 2 }} />
               </button>
             </div>
             <nav className="flex flex-col gap-6">

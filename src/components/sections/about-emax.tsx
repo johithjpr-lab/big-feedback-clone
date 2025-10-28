@@ -143,11 +143,13 @@ const AboutEmax = () => {
                 <motion.div
                   whileHover={{ rotateZ: 360, scale: 1.2 }}
                   transition={{ duration: 0.6 }}
+                  className="text-[#FFC107]"
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 >
-                  {item.icon}
+                  {React.cloneElement(item.icon, { style: { strokeWidth: 2 } })}
                 </motion.div>
                 <motion.p 
-                  className="text-4xl md:text-[48px] font-bold text-primary leading-none"
+                  className="text-4xl md:text-[48px] font-bold text-[#FFC107] leading-none"
                   initial={{ scale: 0 }}
                   animate={isStatsInView ? { scale: 1 } : {}}
                   transition={{ delay: index * 0.15 + 0.3, type: "spring", stiffness: 200 }}

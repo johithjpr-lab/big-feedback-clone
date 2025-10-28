@@ -48,7 +48,8 @@ const StarRating = ({ rating }: { rating: number }) => (
         whileHover={{ scale: 1.2, rotate: 360 }}
       >
         <Star
-          className="w-4 h-4 text-[#fdb913] fill-[#fdb913]"
+          className="w-4 h-4 text-[#FDB913] fill-[#FDB913]"
+          strokeWidth={2}
           aria-hidden="true"
         />
       </motion.div>
@@ -147,7 +148,7 @@ const Testimonials = () => {
             whileTap={{ scale: 0.9 }}
             style={{ transformStyle: "preserve-3d" }}
           >
-            <ChevronLeft className="w-6 h-6 text-gray-700" />
+            <ChevronLeft className="w-6 h-6 text-gray-700" strokeWidth={2} />
           </motion.button>
 
           <motion.button
@@ -157,7 +158,7 @@ const Testimonials = () => {
             whileTap={{ scale: 0.9 }}
             style={{ transformStyle: "preserve-3d" }}
           >
-            <ChevronRight className="w-6 h-6 text-gray-700" />
+            <ChevronRight className="w-6 h-6 text-gray-700" strokeWidth={2} />
           </motion.button>
         </div>
       </div>

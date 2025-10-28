@@ -88,7 +88,7 @@ const CategoryCard = ({
           whileHover={{ rotateZ: 360, scale: 1.2 }}
           transition={{ duration: 0.6 }}
         >
-          <Icon className="h-12 w-12 text-brand-yellow mb-6" strokeWidth={1.5} />
+          <Icon className="h-12 w-12 text-[#FFC107] mb-6" strokeWidth={2} />
         </motion.div>
         <h3 className="text-2xl font-semibold text-heading-black mb-4">
           {title}
@@ -126,7 +126,7 @@ const CategoryCard = ({
           className="group inline-flex items-center gap-1.5 text-sm font-semibold text-brand-yellow hover:underline"
         >
           View All Courses
-          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" strokeWidth={2} />
         </Link>
       </div>
     </motion.div>

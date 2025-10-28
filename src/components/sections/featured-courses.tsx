@@ -65,7 +65,7 @@ const CourseCard = ({ course, index }: { course: typeof coursesData[0]; index: n
                             whileHover={{ scale: 1.2, rotate: 90 }}
                             transition={{ type: "spring" }}
                         >
-                            <Play className="h-8 w-8 text-white fill-white" />
+                            <Play className="h-8 w-8 text-white fill-white" strokeWidth={2} />
                         </motion.div>
                     </motion.div>
                 </motion.div>
@@ -91,21 +91,21 @@ const CourseCard = ({ course, index }: { course: typeof coursesData[0]; index: n
                             className="flex items-center gap-1.5"
                             whileHover={{ scale: 1.1, rotateZ: 5 }}
                         >
-                            <Star className="h-4 w-4 text-star-rating fill-star-rating" />
+                            <Star className="h-4 w-4 text-[#FDB913] fill-[#FDB913]" strokeWidth={2} />
                             <span>{course.rating.toFixed(1)}</span>
                         </motion.div>
                         <motion.div 
                             className="flex items-center gap-1.5"
                             whileHover={{ scale: 1.1 }}
                         >
-                            <Users className="h-4 w-4" />
+                            <Users className="h-4 w-4 text-gray-600" strokeWidth={2} />
                             <span>{course.students.toLocaleString('en-IN')} students</span>
                         </motion.div>
                         <motion.div 
                             className="flex items-center gap-1.5"
                             whileHover={{ scale: 1.1 }}
                         >
-                            <Clock className="h-4 w-4" />
+                            <Clock className="h-4 w-4 text-gray-600" strokeWidth={2} />
                             <span>{course.duration} hours</span>
                         </motion.div>
                     </div>
@@ -214,7 +214,7 @@ const FeaturedCourses = () => {
                         style={{ transformStyle: "preserve-3d" }}
                     >
                         View All Courses
-                        <ArrowRight className="h-4 w-4" />
+                        <ArrowRight className="h-4 w-4" strokeWidth={2} />
                     </motion.a>
                 </motion.div>
 
