@@ -196,19 +196,6 @@ const Footer = () => {
                 </motion.div>
             </div>
 
-            {/* Made in Framer Badge */}
-            <motion.a 
-                href="https://www.framer.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="absolute bottom-5 right-5 bg-white text-black px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 shadow-md hover:shadow-lg transition-shadow"
-                whileHover={{ scale: 1.1, rotateY: 10, boxShadow: "0 10px 30px rgba(255,255,255,0.3)" }}
-                whileTap={{ scale: 0.95 }}
-                style={{ transformStyle: "preserve-3d" }}
-            >
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3L6 9H12L6 21H12V15H18L12 3Z" fill="black"></path></svg>
-                <span>Made in Framer</span>
-            </motion.a>
         </footer>
     );
 };
