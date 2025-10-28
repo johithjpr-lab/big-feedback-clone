@@ -22,6 +22,25 @@ export default function NavigationHeader() {
   const [showResults, setShowResults] = React.useState(false);
   const searchRef = React.useRef<HTMLDivElement>(null);
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setIsMenuOpen(false);
+    
+    const targetId = href.replace('#', '');
+    const targetElement = document.getElementById(targetId);
+    
+    if (targetElement) {
+      const headerOffset = 80;
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   React.useEffect(() => {
     if (searchQuery.trim()) {
       const results = searchCourses(searchQuery);
@@ -92,6 +111,7 @@ export default function NavigationHeader() {
             >
               <Link
                 href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className="text-[13.6px] font-medium text-gray-800 transition-colors hover:text-primary"
               >
                 {link.name}
@@ -250,7 +270,7 @@ export default function NavigationHeader() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className="text-lg font-medium text-gray-800 transition-colors hover:text-primary"
                 >
                   {link.name}
