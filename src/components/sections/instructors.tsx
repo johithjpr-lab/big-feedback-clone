@@ -3,6 +3,8 @@
 import { Users, Award, BookOpen, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 const instructors = [
   {
@@ -56,107 +58,172 @@ const instructors = [
 ];
 
 export default function Instructors() {
+  const titleRef = useRef(null);
+  const isTitleInView = useInView(titleRef, { once: true });
+
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white" style={{ perspective: "1500px" }}>
       <div className="container mx-auto px-4 md:px-8 lg:px-20">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <motion.div 
+          ref={titleRef}
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 50, rotateX: -15 }}
+          animate={isTitleInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          style={{ transformStyle: "preserve-3d" }}
+        >
           <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-heading-black)] mb-4">
             Meet Our Expert Instructors
           </h2>
-          <div className="w-24 h-1 bg-[var(--color-brand-yellow)] mx-auto mb-6"></div>
+          <motion.div 
+            className="w-24 h-1 bg-[var(--color-brand-yellow)] mx-auto mb-6"
+            initial={{ width: 0 }}
+            animate={isTitleInView ? { width: "6rem" } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          />
           <p className="text-lg text-[var(--color-body-gray)] max-w-3xl mx-auto">
             Learn from industry professionals with years of real-world experience and a passion for teaching
           </p>
-        </div>
+        </motion.div>
 
         {/* Instructors Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {instructors.map((instructor) => (
-            <div
-              key={instructor.id}
-              className="bg-white rounded-xl border border-[var(--color-course-card-border)] p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-            >
-              {/* Instructor Image */}
-              <div className="relative w-32 h-32 mx-auto mb-4">
-                <Image
-                  src={instructor.image}
-                  alt={instructor.name}
-                  fill
-                  className="rounded-full object-cover"
-                />
-                <div className="absolute bottom-0 right-0 bg-[var(--color-brand-yellow)] rounded-full p-2">
-                  <Award className="w-5 h-5 text-black" />
-                </div>
-              </div>
+          {instructors.map((instructor, index) => {
+            const cardRef = useRef(null);
+            const isInView = useInView(cardRef, { once: true, margin: "-100px" });
 
-              {/* Instructor Info */}
-              <div className="text-center mb-4">
-                <h3 className="text-xl font-semibold text-[var(--color-heading-black)] mb-1">
-                  {instructor.name}
-                </h3>
-                <p className="text-sm text-[var(--color-brand-yellow)] font-medium mb-1">
-                  {instructor.title}
-                </p>
-                <p className="text-sm text-[var(--color-body-gray)] mb-2">
-                  {instructor.specialization}
-                </p>
-                <p className="text-xs text-[var(--color-muted-gray)] flex items-center justify-center gap-1">
-                  <Award className="w-3 h-3" />
-                  {instructor.experience} Experience
-                </p>
-              </div>
+            return (
+              <motion.div
+                key={instructor.id}
+                ref={cardRef}
+                className="bg-white rounded-xl border border-[var(--color-course-card-border)] p-6 hover:shadow-lg transition-all duration-300"
+                initial={{ opacity: 0, y: 80, rotateX: -25 }}
+                animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+                transition={{ duration: 0.6, delay: index * 0.1, type: "spring" }}
+                whileHover={{ 
+                  scale: 1.05, 
+                  rotateY: 5,
+                  z: 50,
+                  boxShadow: "0 20px 50px rgba(0,0,0,0.15)"
+                }}
+                style={{ transformStyle: "preserve-3d" }}
+              >
+                {/* Instructor Image */}
+                <motion.div 
+                  className="relative w-32 h-32 mx-auto mb-4"
+                  whileHover={{ scale: 1.1, rotateZ: 5 }}
+                  transition={{ type: "spring" }}
+                >
+                  <Image
+                    src={instructor.image}
+                    alt={instructor.name}
+                    fill
+                    className="rounded-full object-cover"
+                  />
+                  <motion.div 
+                    className="absolute bottom-0 right-0 bg-[var(--color-brand-yellow)] rounded-full p-2"
+                    initial={{ scale: 0, rotate: -180 }}
+                    animate={isInView ? { scale: 1, rotate: 0 } : {}}
+                    transition={{ delay: index * 0.1 + 0.3, type: "spring" }}
+                  >
+                    <Award className="w-5 h-5 text-black" />
+                  </motion.div>
+                </motion.div>
 
-              {/* Description */}
-              <p className="text-sm text-[var(--color-body-gray)] text-center mb-4 line-clamp-3">
-                {instructor.description}
-              </p>
+                {/* Instructor Info */}
+                <div className="text-center mb-4">
+                  <h3 className="text-xl font-semibold text-[var(--color-heading-black)] mb-1">
+                    {instructor.name}
+                  </h3>
+                  <p className="text-sm text-[var(--color-brand-yellow)] font-medium mb-1">
+                    {instructor.title}
+                  </p>
+                  <p className="text-sm text-[var(--color-body-gray)] mb-2">
+                    {instructor.specialization}
+                  </p>
+                  <p className="text-xs text-[var(--color-muted-gray)] flex items-center justify-center gap-1">
+                    <Award className="w-3 h-3" />
+                    {instructor.experience} Experience
+                  </p>
+                </div>
 
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-2 pt-4 border-t border-[var(--color-border)]">
-                <div className="text-center">
-                  <div className="flex items-center justify-center gap-1 mb-1">
-                    <BookOpen className="w-4 h-4 text-[var(--color-brand-yellow)]" />
-                    <span className="text-sm font-semibold text-[var(--color-heading-black)]">
-                      {instructor.courses}
-                    </span>
-                  </div>
-                  <p className="text-xs text-[var(--color-muted-gray)]">Courses</p>
+                {/* Description */}
+                <p className="text-sm text-[var(--color-body-gray)] text-center mb-4 line-clamp-3">
+                  {instructor.description}
+                </p>
+
+                {/* Stats */}
+                <div className="grid grid-cols-3 gap-2 pt-4 border-t border-[var(--color-border)]">
+                  <motion.div 
+                    className="text-center"
+                    whileHover={{ scale: 1.1, rotateY: 10 }}
+                  >
+                    <div className="flex items-center justify-center gap-1 mb-1">
+                      <BookOpen className="w-4 h-4 text-[var(--color-brand-yellow)]" />
+                      <span className="text-sm font-semibold text-[var(--color-heading-black)]">
+                        {instructor.courses}
+                      </span>
+                    </div>
+                    <p className="text-xs text-[var(--color-muted-gray)]">Courses</p>
+                  </motion.div>
+                  <motion.div 
+                    className="text-center"
+                    whileHover={{ scale: 1.1, rotateY: 10 }}
+                  >
+                    <div className="flex items-center justify-center gap-1 mb-1">
+                      <Users className="w-4 h-4 text-[var(--color-brand-yellow)]" />
+                      <span className="text-sm font-semibold text-[var(--color-heading-black)]">
+                        {(instructor.students / 1000).toFixed(1)}k
+                      </span>
+                    </div>
+                    <p className="text-xs text-[var(--color-muted-gray)]">Students</p>
+                  </motion.div>
+                  <motion.div 
+                    className="text-center"
+                    whileHover={{ scale: 1.1, rotateY: 10 }}
+                  >
+                    <div className="flex items-center justify-center gap-1 mb-1">
+                      <Star className="w-4 h-4 text-[var(--color-star-rating)] fill-current" />
+                      <span className="text-sm font-semibold text-[var(--color-heading-black)]">
+                        {instructor.rating}
+                      </span>
+                    </div>
+                    <p className="text-xs text-[var(--color-muted-gray)]">Rating</p>
+                  </motion.div>
                 </div>
-                <div className="text-center">
-                  <div className="flex items-center justify-center gap-1 mb-1">
-                    <Users className="w-4 h-4 text-[var(--color-brand-yellow)]" />
-                    <span className="text-sm font-semibold text-[var(--color-heading-black)]">
-                      {(instructor.students / 1000).toFixed(1)}k
-                    </span>
-                  </div>
-                  <p className="text-xs text-[var(--color-muted-gray)]">Students</p>
-                </div>
-                <div className="text-center">
-                  <div className="flex items-center justify-center gap-1 mb-1">
-                    <Star className="w-4 h-4 text-[var(--color-star-rating)] fill-current" />
-                    <span className="text-sm font-semibold text-[var(--color-heading-black)]">
-                      {instructor.rating}
-                    </span>
-                  </div>
-                  <p className="text-xs text-[var(--color-muted-gray)]">Rating</p>
-                </div>
-              </div>
-            </div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Call to Action */}
-        <div className="text-center">
+        <motion.div 
+          className="text-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           <p className="text-[var(--color-body-gray)] mb-4">
             Want to become an instructor at E-MAX?
           </p>
-          <Link href="/join-team">
-            <button className="bg-[var(--color-brand-yellow)] text-black px-8 py-3 rounded-lg font-semibold hover:bg-[#f4b400] transition-colors duration-200 shadow-md hover:shadow-lg">
-              Join Our Team
-            </button>
-          </Link>
-        </div>
+          <motion.div
+            whileHover={{ 
+              scale: 1.05, 
+              rotateY: 5,
+              boxShadow: "0 15px 40px rgba(255, 193, 7, 0.4)"
+            }}
+            whileTap={{ scale: 0.95 }}
+            style={{ transformStyle: "preserve-3d" }}
+          >
+            <Link href="/join-team">
+              <button className="bg-[var(--color-brand-yellow)] text-black px-8 py-3 rounded-lg font-semibold hover:bg-[#f4b400] transition-colors duration-200 shadow-md hover:shadow-lg">
+                Join Our Team
+              </button>
+            </Link>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

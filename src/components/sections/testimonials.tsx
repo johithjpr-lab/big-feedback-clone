@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 type Testimonial = {
   name: string;
@@ -36,11 +40,18 @@ const testimonialsData: Testimonial[] = [
 const StarRating = ({ rating }: { rating: number }) => (
   <div className="flex items-center gap-1">
     {Array.from({ length: rating }).map((_, i) => (
-      <Star
+      <motion.div
         key={i}
-        className="w-4 h-4 text-[#fdb913] fill-[#fdb913]"
-        aria-hidden="true"
-      />
+        initial={{ scale: 0, rotate: -180 }}
+        animate={{ scale: 1, rotate: 0 }}
+        transition={{ delay: i * 0.1, type: "spring" }}
+        whileHover={{ scale: 1.2, rotate: 360 }}
+      >
+        <Star
+          className="w-4 h-4 text-[#fdb913] fill-[#fdb913]"
+          aria-hidden="true"
+        />
+      </motion.div>
     ))}
   </div>
 );
@@ -51,59 +62,103 @@ const TestimonialCard = ({
   quote,
   image,
   rating,
-}: Testimonial) => (
-  <div className="bg-white rounded-lg shadow-[0px_4px_12px_0px_rgba(0,0,0,0.08)] p-6 flex flex-col h-full">
-    <Image
-      src={image}
-      alt={`Profile photo of ${name}`}
-      width={60}
-      height={60}
-      className="rounded-full object-cover w-[60px] h-[60px]"
-    />
+  index,
+  isInView
+}: Testimonial & { index: number; isInView: boolean }) => (
+  <motion.div 
+    className="bg-white rounded-lg shadow-[0px_4px_12px_0px_rgba(0,0,0,0.08)] p-6 flex flex-col h-full"
+    initial={{ opacity: 0, y: 80, rotateX: -25 }}
+    animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+    transition={{ duration: 0.6, delay: index * 0.15, type: "spring" }}
+    whileHover={{ 
+      scale: 1.03, 
+      rotateY: 5,
+      z: 50,
+      boxShadow: "0 20px 50px rgba(0,0,0,0.15)"
+    }}
+    style={{ transformStyle: "preserve-3d" }}
+  >
+    <motion.div
+      initial={{ scale: 0 }}
+      animate={isInView ? { scale: 1 } : {}}
+      transition={{ delay: index * 0.15 + 0.2, type: "spring" }}
+      whileHover={{ scale: 1.1, rotateZ: 5 }}
+    >
+      <Image
+        src={image}
+        alt={`Profile photo of ${name}`}
+        width={60}
+        height={60}
+        className="rounded-full object-cover w-[60px] h-[60px]"
+      />
+    </motion.div>
     <h3 className="mt-4 font-semibold text-lg text-black">{name}</h3>
     <p className="text-sm text-[#666666] mt-1">{role}</p>
     <p className="text-base text-[#666666] leading-[1.6] my-5 flex-grow">
       "{quote}"
     </p>
     <StarRating rating={rating} />
-  </div>
+  </motion.div>
 );
 
 const Testimonials = () => {
+  const titleRef = useRef(null);
+  const cardsRef = useRef(null);
+  const isTitleInView = useInView(titleRef, { once: true });
+  const isCardsInView = useInView(cardsRef, { once: true, margin: "-100px" });
+
   return (
-    <section className="bg-[#f8f9fa] py-20">
+    <section className="bg-[#f8f9fa] py-20" style={{ perspective: "1500px" }}>
       <div className="container mx-auto">
-        <div className="text-center mb-12">
+        <motion.div 
+          ref={titleRef}
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 50, rotateX: -15 }}
+          animate={isTitleInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          style={{ transformStyle: "preserve-3d" }}
+        >
           <h2 className="text-[40px] leading-[1.2] font-bold text-black">
             What Our Students Say
           </h2>
-          <div className="w-20 h-1 bg-primary mx-auto mt-4 mb-6"></div>
+          <motion.div 
+            className="w-20 h-1 bg-primary mx-auto mt-4 mb-6"
+            initial={{ width: 0 }}
+            animate={isTitleInView ? { width: "5rem" } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          />
           <p className="text-lg text-[#666666] max-w-3xl mx-auto">
             Hear from our successful students who have transformed their careers
             through our courses.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="relative">
+        <div className="relative" ref={cardsRef}>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {testimonialsData.map((testimonial) => (
-              <TestimonialCard key={testimonial.name} {...testimonial} />
+            {testimonialsData.map((testimonial, index) => (
+              <TestimonialCard key={testimonial.name} {...testimonial} index={index} isInView={isCardsInView} />
             ))}
           </div>
 
-          <button
+          <motion.button
             aria-label="Previous testimonial"
             className="absolute top-1/2 -left-6 -translate-y-1/2 bg-white rounded-full p-2 shadow-md border border-gray-200 hover:bg-gray-100 transition-colors hidden lg:flex items-center justify-center w-11 h-11"
+            whileHover={{ scale: 1.2, rotateY: 15, x: -5 }}
+            whileTap={{ scale: 0.9 }}
+            style={{ transformStyle: "preserve-3d" }}
           >
             <ChevronLeft className="w-6 h-6 text-gray-700" />
-          </button>
+          </motion.button>
 
-          <button
+          <motion.button
             aria-label="Next testimonial"
             className="absolute top-1/2 -right-6 -translate-y-1/2 bg-white rounded-full p-2 shadow-md border border-gray-200 hover:bg-gray-100 transition-colors hidden lg:flex items-center justify-center w-11 h-11"
+            whileHover={{ scale: 1.2, rotateY: -15, x: 5 }}
+            whileTap={{ scale: 0.9 }}
+            style={{ transformStyle: "preserve-3d" }}
           >
             <ChevronRight className="w-6 h-6 text-gray-700" />
-          </button>
+          </motion.button>
         </div>
       </div>
     </section>

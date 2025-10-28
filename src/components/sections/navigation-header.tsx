@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Menu, Search, X } from "lucide-react";
 import { searchCourses } from "@/lib/courses-data";
+import { motion } from "framer-motion";
 
 const navLinks = [
   { name: "Courses", href: "#courses" },
@@ -44,10 +45,23 @@ export default function NavigationHeader() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-background shadow-sm">
+    <motion.header 
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, type: "spring" }}
+      className="sticky top-0 z-50 w-full bg-background shadow-sm"
+      style={{ 
+        transformStyle: "preserve-3d",
+        perspective: "1000px"
+      }}
+    >
       <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-10 lg:px-20">
         {/* Left Section - Logo */}
-        <div className="flex flex-1 items-center lg:flex-initial">
+        <motion.div 
+          className="flex flex-1 items-center lg:flex-initial"
+          whileHover={{ scale: 1.05, rotateY: 5 }}
+          transition={{ type: "spring", stiffness: 300 }}
+        >
           <Link href="/" className="flex flex-shrink-0 items-center gap-3" onClick={() => setIsMenuOpen(false)}>
             <div className="relative h-12 w-[165px]">
               <Image
@@ -59,24 +73,41 @@ export default function NavigationHeader() {
               />
             </div>
           </Link>
-        </div>
+        </motion.div>
 
         {/* Center Section - Navigation Links */}
         <nav className="hidden flex-1 items-center justify-center gap-8 lg:flex">
-          {navLinks.map((link) => (
-            <Link
+          {navLinks.map((link, index) => (
+            <motion.div
               key={link.name}
-              href={link.href}
-              className="text-[13.6px] font-medium text-gray-800 transition-colors hover:text-primary"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              whileHover={{ 
+                scale: 1.1, 
+                rotateX: 10,
+                z: 20
+              }}
+              style={{ transformStyle: "preserve-3d" }}
             >
-              {link.name}
-            </Link>
+              <Link
+                href={link.href}
+                className="text-[13.6px] font-medium text-gray-800 transition-colors hover:text-primary"
+              >
+                {link.name}
+              </Link>
+            </motion.div>
           ))}
         </nav>
 
         {/* Right Section - Search & CTA */}
         <div className="hidden flex-1 items-center justify-end gap-4 lg:flex">
-          <div className="relative" ref={searchRef}>
+          <motion.div 
+            className="relative" 
+            ref={searchRef}
+            whileHover={{ scale: 1.02, rotateY: 5 }}
+            style={{ transformStyle: "preserve-3d" }}
+          >
             <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted" />
             <input
               type="search"
@@ -89,7 +120,14 @@ export default function NavigationHeader() {
             
             {/* Search Results Dropdown */}
             {showResults && searchResults.length > 0 && (
-              <div className="absolute top-full mt-2 w-[400px] max-h-[500px] overflow-y-auto bg-white border border-gray-200 rounded-lg shadow-xl z-50">
+              <motion.div 
+                initial={{ opacity: 0, y: -10, rotateX: -15 }}
+                animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+                className="absolute top-full mt-2 w-[400px] max-h-[500px] overflow-y-auto bg-white border border-gray-200 rounded-lg shadow-xl z-50"
+                style={{ transformStyle: "preserve-3d" }}
+              >
                 <div className="p-2">
                   <div className="text-xs font-semibold text-gray-500 px-3 py-2">
                     Found {searchResults.length} course{searchResults.length !== 1 ? 's' : ''}
@@ -126,21 +164,35 @@ export default function NavigationHeader() {
                     </Link>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             )}
 
             {showResults && searchQuery.trim() && searchResults.length === 0 && (
-              <div className="absolute top-full mt-2 w-[400px] bg-white border border-gray-200 rounded-lg shadow-xl z-50 p-6 text-center">
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="absolute top-full mt-2 w-[400px] bg-white border border-gray-200 rounded-lg shadow-xl z-50 p-6 text-center"
+              >
                 <p className="text-gray-600">No courses found for "{searchQuery}"</p>
-              </div>
+              </motion.div>
             )}
-          </div>
-          <Link
-            href="/enroll"
-            className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-md bg-primary px-7 text-base font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+          </motion.div>
+          <motion.div
+            whileHover={{ 
+              scale: 1.05, 
+              rotateY: 5,
+              boxShadow: "0 10px 30px rgba(255, 193, 7, 0.3)"
+            }}
+            whileTap={{ scale: 0.95 }}
+            style={{ transformStyle: "preserve-3d" }}
           >
-            Enroll Now
-          </Link>
+            <Link
+              href="/enroll"
+              className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-md bg-primary px-7 text-base font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+            >
+              Enroll Now
+            </Link>
+          </motion.div>
         </div>
 
         {/* Mobile Menu Button */}
@@ -166,7 +218,11 @@ export default function NavigationHeader() {
             aria-hidden="true"
           ></div>
 
-          <div
+          <motion.div
+            initial={{ x: -300, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: -300, opacity: 0 }}
+            transition={{ type: "spring", damping: 25 }}
             className="fixed left-0 top-0 z-50 h-full w-4/5 max-w-xs bg-background p-6 shadow-xl"
             onClick={(e) => e.stopPropagation()}
           >
@@ -210,9 +266,9 @@ export default function NavigationHeader() {
                 Enroll Now
               </Link>
             </div>
-          </div>
+          </motion.div>
         </div>
       )}
-    </header>
+    </motion.header>
   );
 }

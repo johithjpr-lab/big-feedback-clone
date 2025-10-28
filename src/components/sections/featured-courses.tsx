@@ -1,13 +1,16 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Star, Users, Clock, ArrowRight, Play, X } from 'lucide-react';
 import { coursesData } from '@/lib/courses-data';
+import { motion, useInView } from 'framer-motion';
 
-const CourseCard = ({ course }: { course: typeof coursesData[0] }) => {
+const CourseCard = ({ course, index }: { course: typeof coursesData[0]; index: number }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const cardRef = useRef(null);
+    const isInView = useInView(cardRef, { once: true, margin: "-100px" });
 
     useEffect(() => {
         const originalStyle = window.getComputedStyle(document.body).overflow;
@@ -19,7 +22,6 @@ const CourseCard = ({ course }: { course: typeof coursesData[0] }) => {
         };
     }, [isModalOpen]);
 
-
     const badgeClass =
         course.category === 'SAP' || course.category === 'Design'
             ? 'bg-blue-500 text-white'
@@ -27,10 +29,25 @@ const CourseCard = ({ course }: { course: typeof coursesData[0] }) => {
 
     return (
         <>
-            <div className="bg-white rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col h-full">
-                <div
+            <motion.div 
+                ref={cardRef}
+                initial={{ opacity: 0, y: 80, rotateX: -25 }}
+                animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+                transition={{ duration: 0.6, delay: index * 0.15, type: "spring" }}
+                whileHover={{ 
+                    scale: 1.03, 
+                    rotateY: 5,
+                    z: 50,
+                    boxShadow: "0 25px 60px rgba(0,0,0,0.15)"
+                }}
+                className="bg-white rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.08)] overflow-hidden flex flex-col h-full"
+                style={{ transformStyle: "preserve-3d" }}
+            >
+                <motion.div
                     className="relative group cursor-pointer"
                     onClick={() => setIsModalOpen(true)}
+                    whileHover={{ scale: 1.05 }}
+                    style={{ transformStyle: "preserve-3d" }}
                 >
                     <Image
                         src={course.thumbnail}
@@ -39,17 +56,29 @@ const CourseCard = ({ course }: { course: typeof coursesData[0] }) => {
                         height={216}
                         className="w-full aspect-video object-cover"
                     />
-                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="bg-white/30 rounded-full p-3">
+                    <motion.div 
+                        className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        whileHover={{ backgroundColor: "rgba(0,0,0,0.6)" }}
+                    >
+                        <motion.div 
+                            className="bg-white/30 rounded-full p-3"
+                            whileHover={{ scale: 1.2, rotate: 90 }}
+                            transition={{ type: "spring" }}
+                        >
                             <Play className="h-8 w-8 text-white fill-white" />
-                        </div>
-                    </div>
-                </div>
+                        </motion.div>
+                    </motion.div>
+                </motion.div>
 
                 <div className="p-5 flex-grow flex flex-col relative">
-                    <span className={`absolute top-0 left-5 -translate-y-1/2 px-3 py-1 text-xs font-bold rounded-full ${badgeClass}`}>
+                    <motion.span 
+                        className={`absolute top-0 left-5 -translate-y-1/2 px-3 py-1 text-xs font-bold rounded-full ${badgeClass}`}
+                        initial={{ scale: 0, rotate: -180 }}
+                        animate={isInView ? { scale: 1, rotate: 0 } : {}}
+                        transition={{ delay: index * 0.15 + 0.3, type: "spring" }}
+                    >
                         {course.category}
-                    </span>
+                    </motion.span>
 
                     <Link href={`/courses/${course.slug}`}>
                         <h3 className="text-lg font-semibold text-black mt-4 h-14 hover:text-primary transition-colors cursor-pointer">
@@ -58,42 +87,69 @@ const CourseCard = ({ course }: { course: typeof coursesData[0] }) => {
                     </Link>
 
                     <div className="flex items-center flex-wrap gap-x-4 gap-y-2 text-sm text-course-meta mt-3">
-                        <div className="flex items-center gap-1.5">
+                        <motion.div 
+                            className="flex items-center gap-1.5"
+                            whileHover={{ scale: 1.1, rotateZ: 5 }}
+                        >
                             <Star className="h-4 w-4 text-star-rating fill-star-rating" />
                             <span>{course.rating.toFixed(1)}</span>
-                        </div>
-                        <div className="flex items-center gap-1.5">
+                        </motion.div>
+                        <motion.div 
+                            className="flex items-center gap-1.5"
+                            whileHover={{ scale: 1.1 }}
+                        >
                             <Users className="h-4 w-4" />
                             <span>{course.students.toLocaleString('en-IN')} students</span>
-                        </div>
-                        <div className="flex items-center gap-1.5">
+                        </motion.div>
+                        <motion.div 
+                            className="flex items-center gap-1.5"
+                            whileHover={{ scale: 1.1 }}
+                        >
                             <Clock className="h-4 w-4" />
                             <span>{course.duration} hours</span>
-                        </div>
+                        </motion.div>
                     </div>
 
                     <div className="flex items-center justify-between mt-auto pt-4">
                         <span className="text-xl font-bold text-black">₹{course.price.toLocaleString('en-IN')}</span>
-                        <Link href={`/enroll?course=${encodeURIComponent(course.title)}`} className="bg-primary text-primary-foreground font-semibold py-2 px-5 rounded-md text-sm hover:brightness-90 transition-all">
-                            Enroll Now
-                        </Link>
+                        <motion.div
+                            whileHover={{ scale: 1.05, rotateY: 5 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            <Link href={`/enroll?course=${encodeURIComponent(course.title)}`} className="bg-primary text-primary-foreground font-semibold py-2 px-5 rounded-md text-sm hover:brightness-90 transition-all">
+                                Enroll Now
+                            </Link>
+                        </motion.div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
 
             {isModalOpen && (
-                <div
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
                     className="fixed inset-0 bg-black/80 z-[100] flex items-center justify-center p-4"
                     onClick={() => setIsModalOpen(false)}
                 >
-                    <div className="relative w-full max-w-4xl" onClick={(e) => e.stopPropagation()}>
-                        <button
+                    <motion.div 
+                        className="relative w-full max-w-4xl" 
+                        onClick={(e) => e.stopPropagation()}
+                        initial={{ scale: 0.5, rotateX: -30 }}
+                        animate={{ scale: 1, rotateX: 0 }}
+                        exit={{ scale: 0.5, rotateX: 30 }}
+                        transition={{ type: "spring", damping: 20 }}
+                        style={{ transformStyle: "preserve-3d" }}
+                    >
+                        <motion.button
                             onClick={() => setIsModalOpen(false)}
                             className="absolute -top-2 -right-2 md:-top-8 md:-right-8 text-white bg-black/50 rounded-full p-1 hover:bg-black"
                             aria-label="Close video player"
+                            whileHover={{ scale: 1.2, rotate: 90 }}
+                            whileTap={{ scale: 0.9 }}
                         >
                             <X size={28} />
-                        </button>
+                        </motion.button>
                         <div className="aspect-video w-full bg-black">
                             <iframe
                                 width="100%"
@@ -106,40 +162,65 @@ const CourseCard = ({ course }: { course: typeof coursesData[0] }) => {
                                 className="rounded-lg"
                             ></iframe>
                         </div>
-                    </div>
-                </div>
+                    </motion.div>
+                </motion.div>
             )}
         </>
     );
 };
 
-
 const FeaturedCourses = () => {
+    const titleRef = useRef(null);
+    const isTitleInView = useInView(titleRef, { once: true });
+
     return (
         <section className="bg-white py-20 lg:py-24">
             <div className="container">
-                <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
-                    <div>
+                <motion.div 
+                    ref={titleRef}
+                    className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12"
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={isTitleInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.6 }}
+                    style={{ transformStyle: "preserve-3d" }}
+                >
+                    <motion.div
+                        initial={{ x: -50, rotateY: -15 }}
+                        animate={isTitleInView ? { x: 0, rotateY: 0 } : {}}
+                        transition={{ duration: 0.6 }}
+                    >
                         <h2 className="text-4xl font-bold text-heading-black">
                             Featured Courses
                         </h2>
-                        <div className="mt-4 h-1.5 w-24 bg-primary" />
+                        <motion.div 
+                            className="mt-4 h-1.5 w-24 bg-primary"
+                            initial={{ width: 0 }}
+                            animate={isTitleInView ? { width: "6rem" } : {}}
+                            transition={{ duration: 0.8, delay: 0.3 }}
+                        />
                         <p className="mt-6 text-base text-body-gray max-w-lg">
                             Our most popular and highly-rated courses that have helped thousands of students launch successful careers.
                         </p>
-                    </div>
-                    <a
+                    </motion.div>
+                    <motion.a
                         href="#courses"
                         className="flex-shrink-0 self-start md:self-end inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold text-white bg-black rounded-md transition-colors hover:bg-gray-800 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                        whileHover={{ 
+                            scale: 1.05, 
+                            rotateY: -5,
+                            boxShadow: "0 15px 40px rgba(0,0,0,0.3)"
+                        }}
+                        whileTap={{ scale: 0.95 }}
+                        style={{ transformStyle: "preserve-3d" }}
                     >
                         View All Courses
                         <ArrowRight className="h-4 w-4" />
-                    </a>
-                </div>
+                    </motion.a>
+                </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {coursesData.map((course) => (
-                        <CourseCard key={course.id} course={course} />
+                    {coursesData.map((course, index) => (
+                        <CourseCard key={course.id} course={course} index={index} />
                     ))}
                 </div>
             </div>
