@@ -9,25 +9,25 @@ import Footer from '@/components/sections/footer';
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-white overflow-x-hidden w-full">
       <NavigationHeader />
-      <main className="flex-1">
+      <main className="flex-1 w-full overflow-x-hidden">
         <HeroSection />
-        <section id="courses">
+        <section id="courses" className="w-full overflow-x-hidden">
           <CourseCategories />
           <FeaturedCourses />
         </section>
-        <section id="about">
+        <section id="about" className="w-full overflow-x-hidden">
           <AboutEmax />
         </section>
-        <section id="instructors">
+        <section id="instructors" className="w-full overflow-x-hidden">
           <Instructors />
         </section>
-        <section id="success-stories">
+        <section id="success-stories" className="w-full overflow-x-hidden">
           <Testimonials />
         </section>
       </main>
-      <section id="contact">
+      <section id="contact" className="w-full overflow-x-hidden">
         <Footer />
       </section>
     </div>
