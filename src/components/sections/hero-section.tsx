@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 const HeroSection = () => {
   return (
     <section
-      className="relative flex items-center bg-cover bg-center min-h-[500px] md:min-h-[600px]"
+      className="relative flex items-center bg-cover bg-center min-h-[450px] md:min-h-[500px]"
       style={{
         backgroundImage: "url('https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/da7d34c1-29ab-49cf-9cb9-e9dfeb9eaad9-big-feedback-193790-framer-app/assets/images/WiWmm6pPK4QoTxViEbRXSxvM4ss-2.jpg')",
         transformStyle: "preserve-3d",
@@ -18,7 +18,7 @@ const HeroSection = () => {
         aria-hidden="true"
       />
       
-      <div className="relative container py-12 md:py-0">
+      <div className="relative container py-10 md:py-0">
         <motion.div 
           className="max-w-[700px] text-left"
           initial={{ opacity: 0, x: -100, rotateY: -15 }}
@@ -39,7 +39,7 @@ const HeroSection = () => {
             Empowering Careers Through Quality Education
           </motion.h1>
           <motion.p 
-            className="mt-6 text-base md:text-lg text-white/90 max-w-2xl leading-relaxed"
+            className="mt-4 text-base md:text-lg text-white/90 max-w-2xl leading-relaxed"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -51,7 +51,7 @@ const HeroSection = () => {
             E-MAX delivers industry-relevant courses designed to help you excel in today's competitive job market. Join thousands of successful professionals who started their journey with us.
           </motion.p>
           <motion.div 
-            className="mt-10 flex flex-col items-stretch text-center sm:flex-row sm:items-center sm:text-left gap-4"
+            className="mt-6 flex flex-col items-stretch text-center sm:flex-row sm:items-center sm:text-left gap-4"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}

@@ -174,7 +174,7 @@ const FeaturedCourses = () => {
     const isTitleInView = useInView(titleRef, { once: true });
 
     return (
-        <section className="bg-white py-12 md:py-20 lg:py-24">
+        <section className="bg-white py-8 md:py-12 lg:py-16">
             <div className="container px-4 md:px-8 lg:px-10">
                 <motion.div 
                     ref={titleRef}

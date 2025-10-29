@@ -62,12 +62,12 @@ export default function Instructors() {
   const isTitleInView = useInView(titleRef, { once: true });
 
   return (
-    <section className="py-12 md:py-16 lg:py-20 bg-white" style={{ perspective: "1500px" }}>
+    <section className="py-8 md:py-12 lg:py-16 bg-white" style={{ perspective: "1500px" }}>
       <div className="container mx-auto px-4 md:px-8 lg:px-20">
         {/* Section Header */}
         <motion.div 
           ref={titleRef}
-          className="text-center mb-10 md:mb-12 lg:mb-16"
+          className="text-center mb-8 md:mb-10"
           initial={{ opacity: 0, y: 50, rotateX: -15 }}
           animate={isTitleInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
           transition={{ duration: 0.6 }}
@@ -88,7 +88,7 @@ export default function Instructors() {
         </motion.div>
 
         {/* Instructors Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8 mb-8 md:mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8 mb-6 md:mb-8">
           {instructors.map((instructor, index) => {
             const cardRef = useRef(null);
             const isInView = useInView(cardRef, { once: true, margin: "-100px" });

@@ -44,7 +44,7 @@ const Footer = () => {
             }} 
             className="font-inter relative"
         >
-            <div className="max-w-[1280px] mx-auto px-4 md:px-10 lg:px-20 pt-12 md:pt-16 pb-20 md:pb-24">
+            <div className="max-w-[1280px] mx-auto px-4 md:px-10 lg:px-20 pt-8 md:pt-12 pb-6 md:pb-8">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.5fr,1fr,1fr,1.5fr] gap-8 md:gap-10 lg:gap-12">
                     {/* Column 1: Brand Info */}
                     <motion.div
@@ -171,7 +171,7 @@ const Footer = () => {
 
                 {/* Bottom Bar */}
                 <motion.div 
-                    className="border-t mt-12 md:mt-16 pt-6 md:pt-8 flex flex-col-reverse md:flex-row justify-between items-center gap-4 md:gap-6" 
+                    className="border-t mt-8 md:mt-12 pt-4 md:pt-6 flex flex-col-reverse md:flex-row justify-between items-center gap-4 md:gap-6" 
                     style={{ borderColor: 'rgba(255, 255, 255, 0.1)' }}
                     initial={{ opacity: 0, y: 30 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}

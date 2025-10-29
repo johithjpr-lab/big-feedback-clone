@@ -109,11 +109,11 @@ const Testimonials = () => {
   const isCardsInView = useInView(cardsRef, { once: true, margin: "-100px" });
 
   return (
-    <section className="bg-[#f8f9fa] py-12 md:py-16 lg:py-20" style={{ perspective: "1500px" }}>
+    <section className="bg-[#f8f9fa] py-8 md:py-12 lg:py-16" style={{ perspective: "1500px" }}>
       <div className="container mx-auto px-4 md:px-8 lg:px-10">
         <motion.div 
           ref={titleRef}
-          className="text-center mb-8 md:mb-10 lg:mb-12"
+          className="text-center mb-6 md:mb-8 lg:mb-10"
           initial={{ opacity: 0, y: 50, rotateX: -15 }}
           animate={isTitleInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
           transition={{ duration: 0.6 }}

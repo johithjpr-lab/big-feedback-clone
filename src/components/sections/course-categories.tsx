@@ -138,7 +138,7 @@ const CourseCategories = () => {
   const isTitleInView = useInView(titleRef, { once: true });
 
   return (
-    <section className="bg-white py-12 md:py-20 lg:py-24">
+    <section className="bg-white py-8 md:py-12 lg:py-16">
       <div className="max-w-7xl mx-auto px-4 md:px-10 lg:px-20">
         <motion.div 
           ref={titleRef}
@@ -152,18 +152,18 @@ const CourseCategories = () => {
             Our Course Categories
           </h2>
           <motion.div 
-            className="mt-4 mx-auto h-1 w-20 bg-brand-yellow rounded-full"
+            className="mt-3 mx-auto h-1 w-20 bg-brand-yellow rounded-full"
             initial={{ width: 0 }}
             animate={isTitleInView ? { width: "5rem" } : {}}
             transition={{ duration: 0.8, delay: 0.3 }}
           />
-          <p className="mt-4 md:mt-6 text-sm md:text-base lg:text-lg text-body-gray max-w-3xl mx-auto px-2">
+          <p className="mt-4 text-sm md:text-base lg:text-lg text-body-gray max-w-3xl mx-auto px-2">
             Explore our comprehensive range of courses designed to equip you
             with the skills needed for today's job market.
           </p>
         </motion.div>
 
-        <div className="relative mt-8 md:mt-12 lg:mt-16">
+        <div className="relative mt-8 md:mt-10">
           <div className="absolute top-1/2 -translate-y-1/2 -left-10 hidden xl:flex flex-col gap-y-2">
             <motion.button
               aria-label="Previous category"
