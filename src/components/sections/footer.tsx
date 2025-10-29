@@ -44,7 +44,7 @@ const Footer = () => {
             }} 
             className="font-inter relative"
         >
-            <div className="max-w-[1280px] mx-auto px-4 md:px-10 lg:px-20 pt-8 md:pt-12 pb-6 md:pb-8">
+            <div className="max-w-[1280px] mx-auto px-0 pt-8 md:pt-12 pb-6 md:pb-8">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.5fr,1fr,1fr,1.5fr] gap-8 md:gap-10 lg:gap-12">
                     {/* Column 1: Brand Info */}
                     <motion.div

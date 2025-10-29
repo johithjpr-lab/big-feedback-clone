@@ -110,8 +110,8 @@ const Testimonials = () => {
 
   return (
     <section className="bg-[#f8f9fa] py-8 md:py-12 lg:py-16" style={{ perspective: "1500px" }}>
-      <div className="container mx-auto px-4 md:px-8 lg:px-10">
-        <motion.div 
+      <div className="container mx-auto px-0">
+        <motion.div
           ref={titleRef}
           className="text-center mb-6 md:mb-8 lg:mb-10"
           initial={{ opacity: 0, y: 50, rotateX: -15 }}
@@ -122,7 +122,7 @@ const Testimonials = () => {
           <h2 className="text-2xl sm:text-3xl md:text-[40px] leading-[1.2] font-bold text-black">
             What Our Students Say
           </h2>
-          <motion.div 
+          <motion.div
             className="w-16 md:w-20 h-1 bg-primary mx-auto mt-3 md:mt-4 mb-4 md:mb-6"
             initial={{ width: 0 }}
             animate={isTitleInView ? { width: "5rem" } : {}}

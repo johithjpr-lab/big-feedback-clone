@@ -63,7 +63,7 @@ export default function Instructors() {
 
   return (
     <section className="py-8 md:py-12 lg:py-16 bg-white" style={{ perspective: "1500px" }}>
-      <div className="container mx-auto px-4 md:px-8 lg:px-20">
+      <div className="container mx-auto px-0">
         {/* Section Header */}
         <motion.div 
           ref={titleRef}

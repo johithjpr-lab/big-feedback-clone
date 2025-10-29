@@ -1,3 +1,7 @@
+/* Updated: 2025-10-29T03:40:43.544Z */
+/* Updated: 2025-10-28T16:26:20.089Z */
+/* Updated: 2025-10-28T13:44:20.501Z */
+/* Updated: 2025-10-28T12:08:35.805Z */
 /* Updated: 2025-10-28T10:16:37.648Z */
 /* Updated: 2025-10-28T09:00:39.555Z */
 /* Updated: 2025-10-28T07:22:55.690Z */
@@ -268,14 +272,14 @@
     max-width: 1280px;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 80px;
-    padding-right: 80px;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   @media (max-width: 768px) {
     .container {
-      padding-left: 40px;
-      padding-right: 40px;
+      padding-left: 0;
+      padding-right: 0;
     }
   }
 }

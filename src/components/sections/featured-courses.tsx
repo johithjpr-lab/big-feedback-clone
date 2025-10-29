@@ -175,8 +175,8 @@ const FeaturedCourses = () => {
 
     return (
         <section className="bg-white py-8 md:py-12 lg:py-16">
-            <div className="container px-4 md:px-8 lg:px-10">
-                <motion.div 
+            <div className="container px-0">
+                <motion.div
                     ref={titleRef}
                     className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 md:gap-6 mb-8 md:mb-12"
                     initial={{ opacity: 0, y: 50 }}
