@@ -18,7 +18,7 @@ const HeroSection = () => {
         aria-hidden="true"
       />
       
-      <div className="relative container py-10 md:py-0">
+      <div className="relative w-full max-w-[1280px] mx-auto pl-10 pr-4 md:pl-20 md:pr-6 py-10 md:py-0">
         <motion.div
           className="max-w-[700px] text-left"
           initial={{ opacity: 0, x: -100, rotateY: -15 }}
