@@ -139,7 +139,7 @@ const CourseCategories = () => {
 
   return (
     <section className="bg-white py-8 md:py-12 lg:py-16 w-full">
-      <div className="w-full mx-auto px-0">
+      <div className="container">
         <motion.div 
           ref={titleRef}
           className="text-center"

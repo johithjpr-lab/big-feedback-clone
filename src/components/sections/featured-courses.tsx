@@ -175,7 +175,7 @@ const FeaturedCourses = () => {
 
     return (
         <section className="bg-white py-8 md:py-12 lg:py-16 w-full">
-            <div className="w-full px-0">
+            <div className="container">
                 <motion.div
                     ref={titleRef}
                     className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 md:gap-6 mb-8 md:mb-12"

@@ -110,7 +110,7 @@ const Testimonials = () => {
 
   return (
     <section className="bg-[#f8f9fa] py-8 md:py-12 lg:py-16 w-full" style={{ perspective: "1500px" }}>
-      <div className="w-full mx-auto px-0">
+      <div className="container">
         <motion.div
           ref={titleRef}
           className="text-center mb-6 md:mb-8 lg:mb-10"
