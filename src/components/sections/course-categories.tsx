@@ -138,8 +138,8 @@ const CourseCategories = () => {
   const isTitleInView = useInView(titleRef, { once: true });
 
   return (
-    <section className="bg-white py-20 lg:py-24">
-      <div className="max-w-7xl mx-auto px-10 md:px-20">
+    <section className="bg-white py-12 md:py-20 lg:py-24">
+      <div className="max-w-7xl mx-auto px-4 md:px-10 lg:px-20">
         <motion.div 
           ref={titleRef}
           className="text-center"
@@ -148,7 +148,7 @@ const CourseCategories = () => {
           transition={{ duration: 0.6 }}
           style={{ transformStyle: "preserve-3d" }}
         >
-          <h2 className="text-3xl md:text-[40px] font-bold text-heading-black leading-tight">
+          <h2 className="text-2xl md:text-3xl lg:text-[40px] font-bold text-heading-black leading-tight">
             Our Course Categories
           </h2>
           <motion.div 
@@ -157,13 +157,13 @@ const CourseCategories = () => {
             animate={isTitleInView ? { width: "5rem" } : {}}
             transition={{ duration: 0.8, delay: 0.3 }}
           />
-          <p className="mt-6 text-base md:text-lg text-body-gray max-w-3xl mx-auto">
+          <p className="mt-4 md:mt-6 text-sm md:text-base lg:text-lg text-body-gray max-w-3xl mx-auto px-2">
             Explore our comprehensive range of courses designed to equip you
             with the skills needed for today's job market.
           </p>
         </motion.div>
 
-        <div className="relative mt-12 lg:mt-16">
+        <div className="relative mt-8 md:mt-12 lg:mt-16">
           <div className="absolute top-1/2 -translate-y-1/2 -left-10 hidden xl:flex flex-col gap-y-2">
             <motion.button
               aria-label="Previous category"
@@ -183,7 +183,7 @@ const CourseCategories = () => {
             </motion.button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {categories.map((category, index) => (
               <CategoryCard key={index} {...category} />
             ))}

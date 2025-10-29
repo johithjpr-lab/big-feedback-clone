@@ -67,7 +67,7 @@ const TestimonialCard = ({
   isInView
 }: Testimonial & { index: number; isInView: boolean }) => (
   <motion.div 
-    className="bg-white rounded-lg shadow-[0px_4px_12px_0px_rgba(0,0,0,0.08)] p-6 flex flex-col h-full"
+    className="bg-white rounded-lg shadow-[0px_4px_12px_0px_rgba(0,0,0,0.08)] p-4 md:p-6 flex flex-col h-full"
     initial={{ opacity: 0, y: 80, rotateX: -25 }}
     animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
     transition={{ duration: 0.6, delay: index * 0.15, type: "spring" }}
@@ -90,12 +90,12 @@ const TestimonialCard = ({
         alt={`Profile photo of ${name}`}
         width={60}
         height={60}
-        className="rounded-full object-cover w-[60px] h-[60px]"
+        className="rounded-full object-cover w-[50px] h-[50px] md:w-[60px] md:h-[60px]"
       />
     </motion.div>
-    <h3 className="mt-4 font-semibold text-lg text-black">{name}</h3>
-    <p className="text-sm text-[#666666] mt-1">{role}</p>
-    <p className="text-base text-[#666666] leading-[1.6] my-5 flex-grow">
+    <h3 className="mt-3 md:mt-4 font-semibold text-base md:text-lg text-black">{name}</h3>
+    <p className="text-xs md:text-sm text-[#666666] mt-1">{role}</p>
+    <p className="text-sm md:text-base text-[#666666] leading-[1.6] my-4 md:my-5 flex-grow">
       "{quote}"
     </p>
     <StarRating rating={rating} />
@@ -109,33 +109,33 @@ const Testimonials = () => {
   const isCardsInView = useInView(cardsRef, { once: true, margin: "-100px" });
 
   return (
-    <section className="bg-[#f8f9fa] py-20" style={{ perspective: "1500px" }}>
-      <div className="container mx-auto">
+    <section className="bg-[#f8f9fa] py-12 md:py-16 lg:py-20" style={{ perspective: "1500px" }}>
+      <div className="container mx-auto px-4 md:px-8 lg:px-10">
         <motion.div 
           ref={titleRef}
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-10 lg:mb-12"
           initial={{ opacity: 0, y: 50, rotateX: -15 }}
           animate={isTitleInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
           transition={{ duration: 0.6 }}
           style={{ transformStyle: "preserve-3d" }}
         >
-          <h2 className="text-[40px] leading-[1.2] font-bold text-black">
+          <h2 className="text-2xl sm:text-3xl md:text-[40px] leading-[1.2] font-bold text-black">
             What Our Students Say
           </h2>
           <motion.div 
-            className="w-20 h-1 bg-primary mx-auto mt-4 mb-6"
+            className="w-16 md:w-20 h-1 bg-primary mx-auto mt-3 md:mt-4 mb-4 md:mb-6"
             initial={{ width: 0 }}
             animate={isTitleInView ? { width: "5rem" } : {}}
             transition={{ duration: 0.8, delay: 0.3 }}
           />
-          <p className="text-lg text-[#666666] max-w-3xl mx-auto">
+          <p className="text-sm md:text-base lg:text-lg text-[#666666] max-w-3xl mx-auto px-4">
             Hear from our successful students who have transformed their careers
             through our courses.
           </p>
         </motion.div>
 
         <div className="relative" ref={cardsRef}>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {testimonialsData.map((testimonial, index) => (
               <TestimonialCard key={testimonial.name} {...testimonial} index={index} isInView={isCardsInView} />
             ))}
@@ -143,22 +143,22 @@ const Testimonials = () => {
 
           <motion.button
             aria-label="Previous testimonial"
-            className="absolute top-1/2 -left-6 -translate-y-1/2 bg-white rounded-full p-2 shadow-md border border-gray-200 hover:bg-gray-100 transition-colors hidden lg:flex items-center justify-center w-11 h-11"
+            className="absolute top-1/2 -left-4 md:-left-6 -translate-y-1/2 bg-white rounded-full p-2 shadow-md border border-gray-200 hover:bg-gray-100 transition-colors hidden lg:flex items-center justify-center w-10 h-10 md:w-11 md:h-11"
             whileHover={{ scale: 1.2, rotateY: 15, x: -5 }}
             whileTap={{ scale: 0.9 }}
             style={{ transformStyle: "preserve-3d" }}
           >
-            <ChevronLeft className="w-6 h-6 text-gray-700" strokeWidth={2} />
+            <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-gray-700" strokeWidth={2} />
           </motion.button>
 
           <motion.button
             aria-label="Next testimonial"
-            className="absolute top-1/2 -right-6 -translate-y-1/2 bg-white rounded-full p-2 shadow-md border border-gray-200 hover:bg-gray-100 transition-colors hidden lg:flex items-center justify-center w-11 h-11"
+            className="absolute top-1/2 -right-4 md:-right-6 -translate-y-1/2 bg-white rounded-full p-2 shadow-md border border-gray-200 hover:bg-gray-100 transition-colors hidden lg:flex items-center justify-center w-10 h-10 md:w-11 md:h-11"
             whileHover={{ scale: 1.2, rotateY: -15, x: 5 }}
             whileTap={{ scale: 0.9 }}
             style={{ transformStyle: "preserve-3d" }}
           >
-            <ChevronRight className="w-6 h-6 text-gray-700" strokeWidth={2} />
+            <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-gray-700" strokeWidth={2} />
           </motion.button>
         </div>
       </div>

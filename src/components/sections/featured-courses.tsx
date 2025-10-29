@@ -174,11 +174,11 @@ const FeaturedCourses = () => {
     const isTitleInView = useInView(titleRef, { once: true });
 
     return (
-        <section className="bg-white py-20 lg:py-24">
-            <div className="container">
+        <section className="bg-white py-12 md:py-20 lg:py-24">
+            <div className="container px-4 md:px-8 lg:px-10">
                 <motion.div 
                     ref={titleRef}
-                    className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12"
+                    className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 md:gap-6 mb-8 md:mb-12"
                     initial={{ opacity: 0, y: 50 }}
                     animate={isTitleInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.6 }}
@@ -189,22 +189,22 @@ const FeaturedCourses = () => {
                         animate={isTitleInView ? { x: 0, rotateY: 0 } : {}}
                         transition={{ duration: 0.6 }}
                     >
-                        <h2 className="text-4xl font-bold text-heading-black">
+                        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-heading-black">
                             Featured Courses
                         </h2>
                         <motion.div 
-                            className="mt-4 h-1.5 w-24 bg-primary"
+                            className="mt-3 md:mt-4 h-1.5 w-16 md:w-24 bg-primary"
                             initial={{ width: 0 }}
                             animate={isTitleInView ? { width: "6rem" } : {}}
                             transition={{ duration: 0.8, delay: 0.3 }}
                         />
-                        <p className="mt-6 text-base text-body-gray max-w-lg">
+                        <p className="mt-4 md:mt-6 text-sm md:text-base text-body-gray max-w-lg">
                             Our most popular and highly-rated courses that have helped thousands of students launch successful careers.
                         </p>
                     </motion.div>
                     <motion.a
                         href="#courses"
-                        className="flex-shrink-0 self-start md:self-end inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold text-white bg-black rounded-md transition-colors hover:bg-gray-800 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                        className="flex-shrink-0 self-start lg:self-end inline-flex items-center justify-center gap-2 px-5 md:px-6 py-2.5 md:py-3 text-sm md:text-base font-semibold text-white bg-black rounded-md transition-colors hover:bg-gray-800 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                         whileHover={{ 
                             scale: 1.05, 
                             rotateY: -5,
@@ -218,7 +218,7 @@ const FeaturedCourses = () => {
                     </motion.a>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
                     {coursesData.map((course, index) => (
                         <CourseCard key={course.id} course={course} index={index} />
                     ))}

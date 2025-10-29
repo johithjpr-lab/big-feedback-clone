@@ -62,33 +62,33 @@ export default function Instructors() {
   const isTitleInView = useInView(titleRef, { once: true });
 
   return (
-    <section className="py-20 bg-white" style={{ perspective: "1500px" }}>
+    <section className="py-12 md:py-16 lg:py-20 bg-white" style={{ perspective: "1500px" }}>
       <div className="container mx-auto px-4 md:px-8 lg:px-20">
         {/* Section Header */}
         <motion.div 
           ref={titleRef}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-12 lg:mb-16"
           initial={{ opacity: 0, y: 50, rotateX: -15 }}
           animate={isTitleInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
           transition={{ duration: 0.6 }}
           style={{ transformStyle: "preserve-3d" }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-heading-black)] mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--color-heading-black)] mb-3 md:mb-4 px-4">
             Meet Our Expert Instructors
           </h2>
           <motion.div 
-            className="w-24 h-1 bg-[var(--color-brand-yellow)] mx-auto mb-6"
+            className="w-16 md:w-24 h-1 bg-[var(--color-brand-yellow)] mx-auto mb-4 md:mb-6"
             initial={{ width: 0 }}
             animate={isTitleInView ? { width: "6rem" } : {}}
             transition={{ duration: 0.8, delay: 0.3 }}
           />
-          <p className="text-lg text-[var(--color-body-gray)] max-w-3xl mx-auto">
+          <p className="text-sm md:text-base lg:text-lg text-[var(--color-body-gray)] max-w-3xl mx-auto px-4">
             Learn from industry professionals with years of real-world experience and a passion for teaching
           </p>
         </motion.div>
 
         {/* Instructors Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8 mb-8 md:mb-12">
           {instructors.map((instructor, index) => {
             const cardRef = useRef(null);
             const isInView = useInView(cardRef, { once: true, margin: "-100px" });
@@ -97,7 +97,7 @@ export default function Instructors() {
               <motion.div
                 key={instructor.id}
                 ref={cardRef}
-                className="bg-white rounded-xl border border-[var(--color-course-card-border)] p-6 hover:shadow-lg transition-all duration-300"
+                className="bg-white rounded-xl border border-[var(--color-course-card-border)] p-4 md:p-6 hover:shadow-lg transition-all duration-300"
                 initial={{ opacity: 0, y: 80, rotateX: -25 }}
                 animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.1, type: "spring" }}
@@ -111,7 +111,7 @@ export default function Instructors() {
               >
                 {/* Instructor Image */}
                 <motion.div 
-                  className="relative w-32 h-32 mx-auto mb-4"
+                  className="relative w-24 h-24 md:w-32 md:h-32 mx-auto mb-3 md:mb-4"
                   whileHover={{ scale: 1.1, rotateZ: 5 }}
                   transition={{ type: "spring" }}
                 >
@@ -122,24 +122,24 @@ export default function Instructors() {
                     className="rounded-full object-cover"
                   />
                   <motion.div 
-                    className="absolute bottom-0 right-0 bg-[var(--color-brand-yellow)] rounded-full p-2"
+                    className="absolute bottom-0 right-0 bg-[var(--color-brand-yellow)] rounded-full p-1.5 md:p-2"
                     initial={{ scale: 0, rotate: -180 }}
                     animate={isInView ? { scale: 1, rotate: 0 } : {}}
                     transition={{ delay: index * 0.1 + 0.3, type: "spring" }}
                   >
-                    <Award className="w-5 h-5 text-black" strokeWidth={2} />
+                    <Award className="w-4 h-4 md:w-5 md:h-5 text-black" strokeWidth={2} />
                   </motion.div>
                 </motion.div>
 
                 {/* Instructor Info */}
-                <div className="text-center mb-4">
-                  <h3 className="text-xl font-semibold text-[var(--color-heading-black)] mb-1">
+                <div className="text-center mb-3 md:mb-4">
+                  <h3 className="text-lg md:text-xl font-semibold text-[var(--color-heading-black)] mb-1">
                     {instructor.name}
                   </h3>
-                  <p className="text-sm text-[var(--color-brand-yellow)] font-medium mb-1">
+                  <p className="text-xs md:text-sm text-[var(--color-brand-yellow)] font-medium mb-1">
                     {instructor.title}
                   </p>
-                  <p className="text-sm text-[var(--color-body-gray)] mb-2">
+                  <p className="text-xs md:text-sm text-[var(--color-body-gray)] mb-2">
                     {instructor.specialization}
                   </p>
                   <p className="text-xs text-[var(--color-muted-gray)] flex items-center justify-center gap-1">
@@ -149,47 +149,47 @@ export default function Instructors() {
                 </div>
 
                 {/* Description */}
-                <p className="text-sm text-[var(--color-body-gray)] text-center mb-4 line-clamp-3">
+                <p className="text-xs md:text-sm text-[var(--color-body-gray)] text-center mb-3 md:mb-4 line-clamp-3">
                   {instructor.description}
                 </p>
 
                 {/* Stats */}
-                <div className="grid grid-cols-3 gap-2 pt-4 border-t border-[var(--color-border)]">
+                <div className="grid grid-cols-3 gap-2 pt-3 md:pt-4 border-t border-[var(--color-border)]">
                   <motion.div 
                     className="text-center"
                     whileHover={{ scale: 1.1, rotateY: 10 }}
                   >
                     <div className="flex items-center justify-center gap-1 mb-1">
-                      <BookOpen className="w-4 h-4 text-[var(--color-brand-yellow)]" strokeWidth={2} />
-                      <span className="text-sm font-semibold text-[var(--color-heading-black)]">
+                      <BookOpen className="w-3 h-3 md:w-4 md:h-4 text-[var(--color-brand-yellow)]" strokeWidth={2} />
+                      <span className="text-xs md:text-sm font-semibold text-[var(--color-heading-black)]">
                         {instructor.courses}
                       </span>
                     </div>
-                    <p className="text-xs text-[var(--color-muted-gray)]">Courses</p>
+                    <p className="text-[10px] md:text-xs text-[var(--color-muted-gray)]">Courses</p>
                   </motion.div>
                   <motion.div 
                     className="text-center"
                     whileHover={{ scale: 1.1, rotateY: 10 }}
                   >
                     <div className="flex items-center justify-center gap-1 mb-1">
-                      <Users className="w-4 h-4 text-[var(--color-brand-yellow)]" strokeWidth={2} />
-                      <span className="text-sm font-semibold text-[var(--color-heading-black)]">
+                      <Users className="w-3 h-3 md:w-4 md:h-4 text-[var(--color-brand-yellow)]" strokeWidth={2} />
+                      <span className="text-xs md:text-sm font-semibold text-[var(--color-heading-black)]">
                         {(instructor.students / 1000).toFixed(1)}k
                       </span>
                     </div>
-                    <p className="text-xs text-[var(--color-muted-gray)]">Students</p>
+                    <p className="text-[10px] md:text-xs text-[var(--color-muted-gray)]">Students</p>
                   </motion.div>
                   <motion.div 
                     className="text-center"
                     whileHover={{ scale: 1.1, rotateY: 10 }}
                   >
                     <div className="flex items-center justify-center gap-1 mb-1">
-                      <Star className="w-4 h-4 text-[var(--color-star-rating)] fill-current" strokeWidth={2} />
-                      <span className="text-sm font-semibold text-[var(--color-heading-black)]">
+                      <Star className="w-3 h-3 md:w-4 md:h-4 text-[var(--color-star-rating)] fill-current" strokeWidth={2} />
+                      <span className="text-xs md:text-sm font-semibold text-[var(--color-heading-black)]">
                         {instructor.rating}
                       </span>
                     </div>
-                    <p className="text-xs text-[var(--color-muted-gray)]">Rating</p>
+                    <p className="text-[10px] md:text-xs text-[var(--color-muted-gray)]">Rating</p>
                   </motion.div>
                 </div>
               </motion.div>
@@ -199,13 +199,13 @@ export default function Instructors() {
 
         {/* Call to Action */}
         <motion.div 
-          className="text-center"
+          className="text-center px-4"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-[var(--color-body-gray)] mb-4">
+          <p className="text-sm md:text-base text-[var(--color-body-gray)] mb-3 md:mb-4">
             Want to become an instructor at E-MAX?
           </p>
           <motion.div
@@ -218,7 +218,7 @@ export default function Instructors() {
             style={{ transformStyle: "preserve-3d" }}
           >
             <Link href="/join-team">
-              <button className="bg-[var(--color-brand-yellow)] text-black px-8 py-3 rounded-lg font-semibold hover:bg-[#f4b400] transition-colors duration-200 shadow-md hover:shadow-lg">
+              <button className="bg-[var(--color-brand-yellow)] text-black px-6 md:px-8 py-2.5 md:py-3 rounded-lg text-sm md:text-base font-semibold hover:bg-[#f4b400] transition-colors duration-200 shadow-md hover:shadow-lg">
                 Join Our Team
               </button>
             </Link>

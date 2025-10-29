@@ -36,8 +36,8 @@ const AboutEmax = () => {
 
   return (
     <section className="bg-black text-white font-inter" style={{ perspective: "1500px" }}>
-      <div className="max-w-7xl mx-auto px-10 md:px-20 py-10 md:py-20">
-        <div className="grid lg:grid-cols-2 gap-12 xl:gap-20 items-center">
+      <div className="max-w-7xl mx-auto px-4 md:px-10 lg:px-20 py-12 md:py-16 lg:py-20">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 xl:gap-20 items-center">
           {/* Left Column - Text Content */}
           <motion.div 
             ref={contentRef}
@@ -48,23 +48,23 @@ const AboutEmax = () => {
             style={{ transformStyle: "preserve-3d" }}
           >
             <motion.div 
-              className="mb-5"
+              className="mb-4 md:mb-5"
               initial={{ opacity: 0, y: 30 }}
               animate={isContentInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.2 }}
             >
-              <h2 className="text-3xl sm:text-[40px] font-bold text-white leading-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-[40px] font-bold text-white leading-tight">
                 About E-MAX
               </h2>
               <motion.div 
-                className="w-20 h-1 bg-primary mt-3"
+                className="w-16 md:w-20 h-1 bg-primary mt-3"
                 initial={{ width: 0 }}
                 animate={isContentInView ? { width: "5rem" } : {}}
                 transition={{ duration: 0.8, delay: 0.4 }}
               />
             </motion.div>
             <motion.div 
-              className="space-y-4 text-base text-white/80 leading-relaxed mb-8"
+              className="space-y-3 md:space-y-4 text-sm md:text-base text-white/80 leading-relaxed mb-6 md:mb-8"
               initial={{ opacity: 0 }}
               animate={isContentInView ? { opacity: 1 } : {}}
               transition={{ delay: 0.4, staggerChildren: 0.2 }}
@@ -110,7 +110,7 @@ const AboutEmax = () => {
               whileTap={{ scale: 0.95 }}
               style={{ transformStyle: "preserve-3d" }}
             >
-              <Button asChild className="h-auto bg-primary text-black font-semibold rounded-md px-7 py-3.5 text-base hover:bg-primary/90 transition-colors duration-300">
+              <Button asChild className="h-auto bg-primary text-black font-semibold rounded-md px-5 md:px-7 py-2.5 md:py-3.5 text-sm md:text-base hover:bg-primary/90 transition-colors duration-300">
                 <a href="#">Learn More About Us</a>
               </Button>
             </motion.div>
@@ -119,7 +119,7 @@ const AboutEmax = () => {
           {/* Right Column - Stats Grid */}
           <motion.div 
             ref={statsRef}
-            className="grid grid-cols-2 gap-4 md:gap-6"
+            className="grid grid-cols-2 gap-3 md:gap-4 lg:gap-6"
             initial={{ opacity: 0, x: 100 }}
             animate={isStatsInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, type: "spring" }}
@@ -127,7 +127,7 @@ const AboutEmax = () => {
             {statItems.map((item, index) => (
               <motion.div
                 key={index}
-                className="bg-[#0d1b2a] rounded-2xl p-6 md:p-10 flex flex-col items-center justify-center text-center space-y-4 min-h-[180px] md:min-h-[200px]"
+                className="bg-[#0d1b2a] rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-10 flex flex-col items-center justify-center text-center space-y-2 md:space-y-4 min-h-[140px] sm:min-h-[160px] md:min-h-[180px] lg:min-h-[200px]"
                 initial={{ opacity: 0, y: 80, rotateX: -30 }}
                 animate={isStatsInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
                 transition={{ delay: index * 0.15, duration: 0.6, type: "spring" }}
@@ -146,17 +146,17 @@ const AboutEmax = () => {
                   className="text-[#FFC107]"
                   style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 >
-                  {React.cloneElement(item.icon, { style: { strokeWidth: 2 } })}
+                  {React.cloneElement(item.icon, { className: "w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12", style: { strokeWidth: 2 } })}
                 </motion.div>
                 <motion.p 
-                  className="text-4xl md:text-[48px] font-bold text-[#FFC107] leading-none"
+                  className="text-3xl sm:text-4xl lg:text-[48px] font-bold text-[#FFC107] leading-none"
                   initial={{ scale: 0 }}
                   animate={isStatsInView ? { scale: 1 } : {}}
                   transition={{ delay: index * 0.15 + 0.3, type: "spring", stiffness: 200 }}
                 >
                   {item.value}
                 </motion.p>
-                <p className="text-sm md:text-base text-white/80">
+                <p className="text-xs sm:text-sm lg:text-base text-white/80">
                   {item.label}
                 </p>
               </motion.div>
