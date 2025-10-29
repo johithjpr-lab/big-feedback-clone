@@ -35,8 +35,8 @@ const AboutEmax = () => {
   const isStatsInView = useInView(statsRef, { once: true, margin: "-100px" });
 
   return (
-    <section className="bg-black text-white font-inter" style={{ perspective: "1500px" }}>
-      <div className="max-w-7xl mx-auto px-0 py-8 md:py-12 lg:py-16">
+    <section className="bg-black text-white font-inter w-full" style={{ perspective: "1500px" }}>
+      <div className="w-full mx-auto px-0 py-8 md:py-12 lg:py-16">
         <div className="grid lg:grid-cols-2 gap-8 md:gap-12 xl:gap-20 items-center">
           {/* Left Column - Text Content */}
           <motion.div 

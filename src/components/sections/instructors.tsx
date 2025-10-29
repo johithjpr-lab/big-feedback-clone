@@ -62,8 +62,8 @@ export default function Instructors() {
   const isTitleInView = useInView(titleRef, { once: true });
 
   return (
-    <section className="py-8 md:py-12 lg:py-16 bg-white" style={{ perspective: "1500px" }}>
-      <div className="container mx-auto px-0">
+    <section className="py-8 md:py-12 lg:py-16 bg-white w-full" style={{ perspective: "1500px" }}>
+      <div className="w-full mx-auto px-0">
         {/* Section Header */}
         <motion.div 
           ref={titleRef}

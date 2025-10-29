@@ -74,7 +74,7 @@ export default function NavigationHeader() {
         perspective: "1000px"
       }}
     >
-      <div className="container mx-auto flex h-20 items-center justify-between px-0">
+      <div className="w-full mx-auto flex h-20 items-center justify-between px-0">
         {/* Left Section - Logo */}
         <motion.div 
           className="flex flex-1 items-center lg:flex-initial"

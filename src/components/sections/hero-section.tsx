@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 const HeroSection = () => {
   return (
     <section
-      className="relative flex items-center bg-cover bg-center min-h-[450px] md:min-h-[500px]"
+      className="relative flex items-center bg-cover bg-center min-h-[450px] md:min-h-[500px] w-full"
       style={{
         backgroundImage: "url('https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/da7d34c1-29ab-49cf-9cb9-e9dfeb9eaad9-big-feedback-193790-framer-app/assets/images/WiWmm6pPK4QoTxViEbRXSxvM4ss-2.jpg')",
         transformStyle: "preserve-3d",
@@ -18,7 +18,7 @@ const HeroSection = () => {
         aria-hidden="true"
       />
       
-      <div className="relative container py-10 md:py-0 px-0">
+      <div className="relative w-full py-10 md:py-0 px-0">
         <motion.div
           className="max-w-[700px] text-left"
           initial={{ opacity: 0, x: -100, rotateY: -15 }}

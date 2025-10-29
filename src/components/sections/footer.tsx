@@ -42,9 +42,9 @@ const Footer = () => {
                 color: 'var(--color-footer-text)',
                 perspective: "1500px"
             }} 
-            className="font-inter relative"
+            className="font-inter relative w-full"
         >
-            <div className="max-w-[1280px] mx-auto px-0 pt-8 md:pt-12 pb-6 md:pb-8">
+            <div className="w-full mx-auto px-0 pt-8 md:pt-12 pb-6 md:pb-8">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.5fr,1fr,1fr,1.5fr] gap-8 md:gap-10 lg:gap-12">
                     {/* Column 1: Brand Info */}
                     <motion.div
