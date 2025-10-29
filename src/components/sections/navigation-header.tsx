@@ -244,6 +244,7 @@ export default function NavigationHeader() {
             exit={{ x: -300, opacity: 0 }}
             transition={{ type: "spring", damping: 25 }}
             className="fixed left-0 top-0 z-50 h-full w-4/5 max-w-xs bg-white p-6 shadow-xl"
+            style={{ backgroundColor: '#ffffff' }}
             onClick={(e) => e.stopPropagation()}
           >
             <div className="mb-8 flex items-center justify-between">
